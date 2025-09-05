@@ -1,39 +1,39 @@
-**Ad Soyad:** Dilek Yılmaz  
-**E-posta:** dilekyilmaz000@gmail.com  
+# Pusula Internship Data Science Case
+
+**Name:** Dilek Yılmaz  
+**Email:** dilekyilmaz000@gmail.com  
 
 ---
 
-## 📌 Proje Özeti
-Bu proje, **Pusula Data Science Internship Case Study** kapsamında verilen `Talent_Academy_Case_DT_2025.xlsx` veri seti üzerinde **Keşifsel Veri Analizi (EDA)** ve **ön-işleme (preprocessing)** adımlarını içermektedir.  
-Amaç, ham veriyi eksik değerlerden arındırmak, kategorik ve çoklu etiketli değişkenleri uygun formata dönüştürmek ve veriyi makine öğrenmesi modelleri için hazır hale getirmektir.  
+## 📌 Project Overview
+This project was developed as part of the **Pusula Data Science Internship Case Study**, using the dataset `Talent_Academy_Case_DT_2025.xlsx`.  
+The goal is to perform **Exploratory Data Analysis (EDA)** and **data preprocessing** steps to clean the raw dataset, handle missing values, transform categorical and multi-label variables, and prepare the data for machine learning models.  
 
-Yapılan başlıca adımlar:
-- Eksik değer analizi ve doldurma
-- String formatlı hedef değişkenin sayısallaştırılması
-- Kategorik değişkenlerin OneHotEncoder ile encode edilmesi
-- Multi-label kolonların (KronikHastalık, Alerji, Tanılar, UygulamaYerleri) dummy sütunlara genişletilmesi
-- Sayısal değişkenlerin ölçeklenmesi (StandardScaler)
-- Temizlenmiş verinin kaydedilmesi (`clean_dataset.parquet`)
+Main steps performed:
+- Analysis and imputation of missing values  
+- Conversion of the string target variable into numeric format  
+- Encoding of categorical variables using OneHotEncoder  
+- Expansion of multi-label columns (KronikHastalik, Alerji, Tanilar, UygulamaYerleri) into dummy variables  
+- Scaling of numerical variables (StandardScaler)  
+- Saving the cleaned dataset (`clean_dataset.parquet`)  
 
-EDA bulguları ve ön-işleme kararlarının detayları `reports/EDA_and_Preprocess.md` dosyasında yer almaktadır.
+Detailed EDA findings and preprocessing decisions are included in `reports/EDA_and_Preprocess.md`.  
 
 ---
 
-## ⚙️ Çalıştırma Talimatları
+## ⚙️ How to Run
 
-### Gereksinimler
-Python 3.10+ ve aşağıdaki kütüphaneler:
+### Requirements
+Python 3.10+ and the following libraries:
 - pandas  
 - numpy  
 - scikit-learn  
 - matplotlib  
+- `openpyxl` (for reading Excel files)  
+- `joblib` (for saving the pipeline)  
 
-İsteğe bağlı:  
-- `openpyxl` (Excel dosyalarını okumak için)  
-- `joblib` (pipeline kaydetmek için)  
-
-1. Ortam Kurulumu
-Proje klasöründe sanal ortam oluşturun ve bağımlılıkları yükleyin:
+### 1. Environment Setup
+Create a virtual environment and install the requirements:
 
 ```bash
 python -m venv .venv
@@ -42,14 +42,23 @@ python -m venv .venv
 
 pip install -r requirements.txt
 
-2. Ön-İşleme Kodunu Çalıştırma
-# Tüm veriyi temizle ve tek dosya kaydet
+2. Run Preprocessing
+# Clean the dataset and save as a single file
 python src/preprocess.py --data data/raw/Talent_Academy_Case_DT_2025.xlsx --out artifacts/clean_dataset.parquet
 
-# Train/Test ayrımı ile çalıştır (opsiyonel)
+# Run with train/test split (optional)
 python src/preprocess.py --data data/raw/Talent_Academy_Case_DT_2025.xlsx --train-test
+Generated files:
+
+artifacts/clean_dataset.parquet → Clean dataset
+
+artifacts/preprocessor.joblib → Saved preprocessing pipeline
+
+artifacts/X_train.parquet, X_test.parquet, y_train.parquet, y_test.parquet → Train/Test split (optional)
+
+artifacts/eda_outputs/ → CSV outputs of EDA summaries
 
 3. EDA Notebook
-EDA ve görselleştirmeler için notebook’u açabilirsiniz:
 
+To explore EDA and visualizations, run:
 jupyter notebook notebooks/clean_dataset_eda.ipynb
