@@ -1,4 +1,4 @@
-# Pusula Internship Data Science Case
+# Data Science Case Study 
 
 **Name:** Dilek Yılmaz  
 **Email:** dilekyilmaz000@gmail.com  
